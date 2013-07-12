@@ -239,20 +239,12 @@ void QMMapView::fitRegion(QMCoordinateRegion &region)
 void QMMapView::regionDidChangeTo(qreal north, qreal south,
                                   qreal east, qreal west)
 {
-    QMCoordinateRegion region;
-    region.setNorth(north);
-    region.setSouth(south);
-    region.setEast(east);
-    region.setWest(west);
-    emit regionChanged(region);
+    emit regionChanged(QMCoordinateRegion(north, south, east, west));
 }
 
 void QMMapView::centerDidChangeTo(qreal latitude, qreal longitude)
 {
-    QMCoordinate center;
-    center.setLatitude(latitude);
-    center.setLongitude(longitude);
-    emit centerChanged(center);
+    emit centerChanged(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::mapTypeDidChangeTo(QString typeString)
@@ -263,48 +255,30 @@ void QMMapView::mapTypeDidChangeTo(QString typeString)
 
 void QMMapView::mouseDidClickAt(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit mouseClicked(coordinate);
+    emit mouseClicked(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::mouseDidDoubleClickAt(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit mouseDoubleClicked(coordinate);
+    emit mouseDoubleClicked(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::mouseDidRightClickAt(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit mouseRightClicked(coordinate);
+    emit mouseRightClicked(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::cursorDidMoveTo(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit cursorMoved(coordinate);
+    emit cursorMoved(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::cursorDidEnterTo(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit cursorEntered(coordinate);
+    emit cursorEntered(QMCoordinate(latitude, longitude));
 }
 
 void QMMapView::cursorDidLeaveFrom(qreal latitude, qreal longitude)
 {
-    QMCoordinate coordinate;
-    coordinate.setLatitude(latitude);
-    coordinate.setLongitude(longitude);
-    emit cursorLeaved(coordinate);
+    emit cursorLeaved(QMCoordinate(latitude, longitude));
 }

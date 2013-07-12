@@ -33,6 +33,21 @@ QMCoordinateRegion::QMCoordinateRegion(QMCoordinate southWest,
 {
 }
 
+QMCoordinateRegion::QMCoordinateRegion(qreal north, qreal south,
+                                       qreal east, qreal west) :
+    _east(east), _west(west), _north(north), _south(south)
+{
+}
+
+QMCoordinateRegion::QMCoordinateRegion(QMCoordinate center,
+                                       QMCoordinateSpan span) :
+    _east(center.longitude() + span.longitudeDelta() / 2),
+    _west(center.longitude() - span.longitudeDelta() / 2),
+    _north(center.latitude() + span.latitudeDelta() / 2),
+    _south(center.latitude() - span.latitudeDelta() / 2)
+{
+}
+
 bool QMCoordinateRegion::contains(QMCoordinate &point, bool proper) const
 {
     qreal lng = point.longitude();

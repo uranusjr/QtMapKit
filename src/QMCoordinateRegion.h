@@ -27,6 +27,8 @@ class QMCoordinateRegion
 public:
     QMCoordinateRegion();
     QMCoordinateRegion(QMCoordinate southWest, QMCoordinate northEast);
+    QMCoordinateRegion(qreal north, qreal south, qreal east, qreal west);
+    QMCoordinateRegion(QMCoordinate center, QMCoordinateSpan span);
 
     bool contains(QMCoordinate &point, bool proper = false) const;
     bool intersects(QMCoordinateRegion &span) const;
