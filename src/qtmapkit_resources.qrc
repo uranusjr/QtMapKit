@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/qtmapkit/gmap">
+        <file>gmap.html</file>
+        <file>gmap.js</file>
+    </qresource>
+</RCC>
