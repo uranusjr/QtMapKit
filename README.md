@@ -26,6 +26,13 @@ Documentation is currently lacking, as my current aim is to complete most of the
 * Internet connection.
 
 
+### Notes: Satellite View
+
+You need to have a JPEG decoder if you want to use the satellite view, so that satellite images can be decoded. This means that you need to include the `qjpeg` plugin from the `plugins/imageformats` directory, either by compiling them statically, or bundle them with your executable when you deploy. Refer to the [official documentation](http://qt-project.org/doc/qt-5/deployment-plugins.html) to find out how plugins work.
+
+Thanks to [@crayfellow](https://github.com/crayfellow) for [reporting](https://github.com/uranusjr/QtMapKit/issues/1) this.
+
+
 ## License
 
 BSD 3-clause. See contents of `LICENSE`.
