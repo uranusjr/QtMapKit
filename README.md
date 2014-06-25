@@ -24,3 +24,8 @@ Documentation is currently lacking, as my current aim is to complete most of the
 
 * Qt 4 or greater with WebKit support.
 * Internet connection.
+
+
+## License
+
+BSD 3-clause. See contents of `LICENSE`.
