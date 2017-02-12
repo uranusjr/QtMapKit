@@ -30,13 +30,18 @@ class CustomWebPage : public QWebPage
         CustomWebPage(QObject *parent = 0) : QWebPage(parent) {}
 
     protected:
-        void javaScriptConsoleMessage(const QString &message, int lineNumber,
-                                      const QString &sourceID)
-        {
-            qDebug() << "JavaScript" << sourceID << "line" << lineNumber <<
-                        ":" << message;
-        }
+        virtual void javaScriptConsoleMessage(
+                const QString &message, int lineNumber,
+                const QString &sourceID);
 };
+
+void CustomWebPage::javaScriptConsoleMessage(
+        const QString &message, int lineNumber, const QString &sourceID)
+{
+    qDebug() << "JavaScript" << sourceID << "line" << lineNumber <<
+                ":" << message;
+}
+
 
 class QMMapViewPrivate
 {
@@ -86,8 +91,6 @@ public:
         case QMMapView::Terrain:
             typeName = "TERRAIN";
             break;
-        default:
-            break;
         }
         return QString("google.maps.MapTypeId.%1").arg(typeName);
     }
@@ -133,6 +136,8 @@ void QMMapView::insertNativeObject()
 void QMMapView::initializeMap()
 {
     Q_D(QMMapView);
+    if (d->loaded)
+        return;
     QMCoordinate &center = d->initialValues.centerCoordinate;
     QString js = QString("initialize(%1, %2, %3, %4);").arg(
                 QString::number(center.longitude()),
@@ -222,8 +227,11 @@ void QMMapView::makeRegionVisible(QMCoordinateRegion &region)
 {
     Q_D(QMMapView);
     QString format = QString("panMapToBounds(%1, %2, %3, %4);");
-    QString js = format.arg(region.north(), region.south(),
-                            region.east(), region.west());
+    QString js = format
+            .arg(region.north())
+            .arg(region.south())
+            .arg(region.east())
+            .arg(region.west());
     d->evaluateJavaScript(js);
 }
 
@@ -231,8 +239,11 @@ void QMMapView::fitRegion(QMCoordinateRegion &region)
 {
     Q_D(QMMapView);
     QString format = QString("fitMapToBounds(%1, %2, %3, %4);");
-    QString js = format.arg(region.north(), region.south(),
-                            region.east(), region.west());
+    QString js = format
+            .arg(region.north())
+            .arg(region.south())
+            .arg(region.east())
+            .arg(region.west());
     d->evaluateJavaScript(js);
 }
 
